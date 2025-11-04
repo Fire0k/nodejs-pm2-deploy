@@ -10,6 +10,7 @@ module.exports = {
       name: 'mesto-backend',
       script: 'dist/app.js',
       instances: 1,
+      cwd: './backend',
       exec_mode: 'fork',
       autorestart: true,
       restart_delay: 3000,
