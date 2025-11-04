@@ -33,7 +33,7 @@ module.exports = {
       repo: DEPLOY_REPO,
       path: DEPLOY_PATH,
       env: {
-        PATH: '/home/fireok/.nvm/versions/node/v16.20.2/bin:/usr/bin:/bin', // <-- путь из `which`
+        PATH: '/home/fireok/.nvm/versions/node/v16.20.2/bin:/usr/bin:/bin',
       },
       'pre-deploy-local': `scp .env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/shared/.env || true && scp .env.deploy ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/shared/.env.deploy || true`,
       'post-setup': `mkdir -p ${DEPLOY_PATH}/shared && mkdir -p ${DEPLOY_PATH}/logs`,
