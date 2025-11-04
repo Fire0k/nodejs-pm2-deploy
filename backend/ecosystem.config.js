@@ -38,7 +38,15 @@ module.exports = {
       },
       'pre-deploy-local': `scp .env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/shared/.env || true && scp .env.deploy ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/shared/.env.deploy || true`,
       'post-setup': `mkdir -p ${DEPLOY_PATH}/shared && mkdir -p ${DEPLOY_PATH}/logs`,
-      'post-deploy': `cp ${DEPLOY_PATH}/shared/.env . || true && cp ${DEPLOY_PATH}/shared/.env.deploy . || true && npm run build && pm2 reload ${DEPLOY_PATH}/current/ecosystem.config.js --env production || pm2 start ecosystem.config.js --env production`,
+      'post-deploy': `
+        bash -lc "
+          cp ~/mesto/backend/shared/.env ~/mesto/backend/source/backend/.env &&
+          cd ~/mesto/backend/source/backend &&
+          npm ci &&
+          npm run build &&
+          pm2 reload ecosystem.config.js --env production
+        "
+      `,
     },
   },
 };
