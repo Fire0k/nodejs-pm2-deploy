@@ -15,7 +15,7 @@ mongoose.connect(DB_ADDRESS);
 
 // Только для локальных тестов. Не используйте это в продакшене
 app.use(cors({
-  origin: 'https://fireok.nomorepartiessbs.ru',
+  origin: ['https://fireok.nomorepartiessbs.ru', 'http://fireok.nomorepartiessbs.ru'],
   credentials: true,
 }));
 app.use(express.json());
